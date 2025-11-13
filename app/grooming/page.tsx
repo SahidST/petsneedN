@@ -1,10 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Sparkles, Scissors, Heart, Cat, Baby } from 'lucide-react'
 import FAQAccordion, { FAQItem } from '@/components/FAQAccordion'
 import Button from '@/components/Button'
 import ReadMore from '@/components/ReadMore'
+import Gallery, { GalleryImage } from '@/components/Gallery'
 import { FloatingBubbles, PawPrintPattern } from '@/components/DecorativeElements'
 
 const groomingFAQs: FAQItem[] = [
@@ -30,16 +32,79 @@ const groomingFAQs: FAQItem[] = [
   }
 ]
 
+const galleryImages: GalleryImage[] = [
+  {
+    id: '1',
+    src: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?w=800&q=80',
+    alt: 'Happy golden retriever getting groomed',
+    title: 'Full Grooming Service'
+  },
+  {
+    id: '2',
+    src: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80',
+    alt: 'Cute puppy after bath',
+    title: 'Puppy Bath & Blow Dry'
+  },
+  {
+    id: '3',
+    src: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=800&q=80',
+    alt: 'Cat grooming session',
+    title: 'Professional Cat Grooming'
+  },
+  {
+    id: '4',
+    src: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800&q=80',
+    alt: 'Dog getting nail trim',
+    title: 'Nail Trimming & Paw Care'
+  },
+  {
+    id: '5',
+    src: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&q=80',
+    alt: 'Freshly groomed poodle',
+    title: 'Breed-Specific Styling'
+  },
+  {
+    id: '6',
+    src: 'https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?w=800&q=80',
+    alt: 'Dog enjoying grooming',
+    title: 'Spa Treatment'
+  },
+  {
+    id: '7',
+    src: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800&q=80',
+    alt: 'Adorable groomed puppy',
+    title: 'Puppy Intro Grooming'
+  },
+  {
+    id: '8',
+    src: 'https://images.unsplash.com/photo-1415369629372-26f2fe60c467?w=800&q=80',
+    alt: 'Happy dog after grooming',
+    title: 'Complete Makeover'
+  }
+]
+
 export default function GroomingPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-pink-50 to-purple-50 py-16 md:py-20 overflow-hidden">
+      <section className="relative py-16 md:py-20 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1600077106724-946750eeaf3c?w=1920&q=80"
+            alt="Pet grooming background"
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-pink-500/70 to-purple-500/70 backdrop-blur-sm" />
+        </div>
         <FloatingBubbles />
         <PawPrintPattern />
         <div className="container mx-auto px-5 md:px-8 lg:px-12 text-center relative z-10">
           <motion.h1
-            className="font-fredoka text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 text-text-dark"
+            className="font-fredoka text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 text-white drop-shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -47,7 +112,7 @@ export default function GroomingPage() {
             Pet Grooming in Kolkata
           </motion.h1>
           <motion.p
-            className="text-lg md:text-xl text-text-medium mb-8 max-w-3xl mx-auto"
+            className="text-lg md:text-xl text-white/95 mb-8 max-w-3xl mx-auto drop-shadow-md"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -253,8 +318,23 @@ export default function GroomingPage() {
         </div>
       </section>
 
-      {/* FAQs */}
+      {/* Gallery */}
       <section className="section-padding bg-white">
+        <div className="container mx-auto px-5 md:px-8 lg:px-12">
+          <h2 className="font-fredoka text-3xl md:text-4xl font-semibold mb-4 text-center text-text-dark">
+            Our Grooming Gallery
+          </h2>
+          <p className="text-center text-text-medium mb-12 max-w-2xl mx-auto">
+            See the transformations! Browse photos of our happy, freshly groomed clients. Each grooming session is tailored to your pet's unique needs and personality.
+          </p>
+          <div className="max-w-6xl mx-auto">
+            <Gallery images={galleryImages} />
+          </div>
+        </div>
+      </section>
+
+      {/* FAQs */}
+      <section className="section-padding bg-background">
         <div className="container mx-auto px-5 md:px-8 lg:px-12">
           <h2 className="font-fredoka text-3xl md:text-4xl font-semibold mb-12 text-center text-text-dark">
             Grooming FAQs

@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Stethoscope, Syringe, Heart, Phone, AlertCircle, Check, FileText, BookOpen } from 'lucide-react'
 import FAQAccordion, { FAQItem } from '@/components/FAQAccordion'
 import Button from '@/components/Button'
@@ -35,12 +36,24 @@ export default function ClinicPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 to-cyan-50 py-16 md:py-20 overflow-hidden">
+      <section className="relative py-16 md:py-20 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=1920&q=80"
+            alt="Veterinary clinic background"
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/70 to-cyan-500/70 backdrop-blur-sm" />
+        </div>
         <FloatingBubbles />
         <PawPrintPattern />
         <div className="container mx-auto px-5 md:px-8 lg:px-12 text-center relative z-10">
           <motion.h1
-            className="font-fredoka text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 text-text-dark"
+            className="font-fredoka text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 text-white drop-shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -48,7 +61,7 @@ export default function ClinicPage() {
             Veterinary Clinic in Alipore, Kolkata
           </motion.h1>
           <motion.p
-            className="text-lg md:text-xl text-text-medium mb-8 max-w-3xl mx-auto"
+            className="text-lg md:text-xl text-white/95 mb-8 max-w-3xl mx-auto drop-shadow-md"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}

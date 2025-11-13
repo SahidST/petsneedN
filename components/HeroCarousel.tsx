@@ -2,31 +2,32 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 
 const slides = [
   {
     id: 1,
-    alt: 'Happy white dog running in sunny park',
-    placeholder: 'bg-gradient-to-br from-yellow-200 via-orange-200 to-pink-200',
-    emoji: '🐕'
+    alt: 'Happy golden retriever playing in park',
+    src: 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=1920&q=80',
+    gradient: 'from-yellow-500/30 to-orange-500/30'
   },
   {
     id: 2,
-    alt: 'Groomer gently brushing Persian cat',
-    placeholder: 'bg-gradient-to-br from-purple-200 via-pink-200 to-red-200',
-    emoji: '🐱'
+    alt: 'Professional pet grooming session',
+    src: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=1920&q=80',
+    gradient: 'from-purple-500/30 to-pink-500/30'
   },
   {
     id: 3,
-    alt: 'Veterinarian examining playful puppy',
-    placeholder: 'bg-gradient-to-br from-blue-200 via-cyan-200 to-teal-200',
-    emoji: '🩺'
+    alt: 'Veterinarian examining cute puppy',
+    src: 'https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=1920&q=80',
+    gradient: 'from-blue-500/30 to-cyan-500/30'
   },
   {
     id: 4,
-    alt: 'Pet owner shopping with dog in colorful store',
-    placeholder: 'bg-gradient-to-br from-green-200 via-emerald-200 to-teal-200',
-    emoji: '🛒'
+    alt: 'Pet products and accessories in store',
+    src: 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=1920&q=80',
+    gradient: 'from-green-500/30 to-emerald-500/30'
   },
 ]
 
@@ -55,16 +56,23 @@ export default function HeroCarousel() {
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide}
-          className={`absolute inset-0 ${slides[currentSlide].placeholder} flex items-center justify-center`}
+          className="absolute inset-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Placeholder emoji */}
-          <span className="text-9xl" role="img" aria-label={slides[currentSlide].alt}>
-            {slides[currentSlide].emoji}
-          </span>
+          <Image
+            src={slides[currentSlide].src}
+            alt={slides[currentSlide].alt}
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority={currentSlide === 0}
+            quality={85}
+          />
+          {/* Gradient overlay for better text readability */}
+          <div className={`absolute inset-0 bg-gradient-to-br ${slides[currentSlide].gradient}`} />
         </motion.div>
       </AnimatePresence>
 

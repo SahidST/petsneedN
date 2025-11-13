@@ -5,7 +5,8 @@ import { Scissors, Stethoscope, ShoppingBag, Store, Users, Heart, Check } from '
 import HeroCarousel from '@/components/HeroCarousel'
 import ServiceCard from '@/components/ServiceCard'
 import RotatingTestimonials from '@/components/RotatingTestimonials'
-import FAQAccordion, { FAQItem } from '@/components/FAQAccordion'
+import FAQTabs from '@/components/FAQTabs'
+import { FAQItem } from '@/components/FAQAccordion'
 import Button from '@/components/Button'
 import { PawPrintPattern } from '@/components/DecorativeElements'
 
@@ -15,21 +16,81 @@ const generalFAQs: FAQItem[] = [
     answer: 'For clinic services, please call us at 7411576879 before visiting to check doctor availability. Our store and grooming services welcome walk-ins daily from 10 AM to 10 PM.'
   },
   {
-    question: 'Do you groom cats?',
-    answer: 'Absolutely! We offer gentle, professional grooming for cats, including long-haired breeds like Persians. Our experienced groomers handle every pet with care and patience.'
-  },
-  {
-    question: 'What brands do you carry in your store?',
-    answer: 'We stock popular and trusted brands like Pedigree, Royal Canin, Drools, Farmina, Whiskas, SmartHeart, and more for dogs, cats, birds, and small animals.'
+    question: 'What are your hours of operation?',
+    answer: 'Our store, grooming, and pharmacy are open daily from 10 AM to 10 PM. For clinic services, please call before visiting as doctor availability varies.'
   },
   {
     question: 'Is parking available near your center?',
     answer: 'Yes, parking is available near our location at 10/1D Diamond Harbour Road, Alipore. We\'re easily accessible from all parts of South Kolkata.'
   },
   {
-    question: 'What are your hours of operation?',
-    answer: 'Our store, grooming, and pharmacy are open daily from 10 AM to 10 PM. For clinic services, please call before visiting as doctor availability varies.'
+    question: 'What payment methods do you accept?',
+    answer: 'We accept cash and all major digital payment methods including UPI, cards, and mobile wallets for your convenience.'
   }
+]
+
+const groomingFAQs: FAQItem[] = [
+  {
+    question: 'How often should I get my dog groomed?',
+    answer: 'It depends on breed and coat type. Long-haired breeds like Shih Tzus, Golden Retrievers, and Persians benefit from grooming every 4-6 weeks. Short-haired pets typically need grooming every 8-12 weeks.'
+  },
+  {
+    question: 'Do you groom cats?',
+    answer: 'Absolutely! We offer gentle, professional grooming for cats, including long-haired breeds like Persians. Our experienced groomers handle every pet with care and patience.'
+  },
+  {
+    question: 'Is grooming stressful for cats?',
+    answer: 'Not when done properly! Our groomers are trained in feline handling and create a calm, quiet environment. Many cats relax once they realize grooming feels good.'
+  },
+  {
+    question: 'How long does grooming take?',
+    answer: 'Basic grooming typically takes 1-2 hours, while full grooming packages take 2-3 hours depending on your pet\'s size, coat condition, and temperament. You\'re welcome to wait or we can call you when they\'re ready.'
+  }
+]
+
+const clinicFAQs: FAQItem[] = [
+  {
+    question: 'Do you handle emergency cases?',
+    answer: 'We provide first-aid and stabilization for many urgent situations during our operating hours. For life-threatening emergencies outside our doctor\'s availability or beyond our facility\'s scope, we can guide you to 24-hour emergency veterinary hospitals in Kolkata.'
+  },
+  {
+    question: 'Can I get pet medicines from your pharmacy?',
+    answer: 'Yes! Our pharmacy stocks commonly needed pet medications, supplements, vitamins, and preventive treatments. Prescription medications are dispensed when the doctor is available or with a valid prescription from another vet.'
+  },
+  {
+    question: 'Do you treat birds and small animals?',
+    answer: 'Yes, we provide care for rabbits, hamsters, guinea pigs, parrots, and other birds. Our vets have experience with various species beyond just dogs and cats.'
+  },
+  {
+    question: 'What vaccinations does my pet need?',
+    answer: 'For dogs, we recommend rabies, distemper, parvovirus, and hepatitis vaccines. For cats, we recommend rabies, feline distemper, and calicivirus vaccines. Our vets will create a customized vaccination schedule based on your pet\'s age and health.'
+  }
+]
+
+const productsFAQs: FAQItem[] = [
+  {
+    question: 'What brands do you carry in your store?',
+    answer: 'We stock popular and trusted brands like Pedigree, Royal Canin, Drools, Farmina, Whiskas, SmartHeart, and more for dogs, cats, birds, and small animals.'
+  },
+  {
+    question: 'Do you offer delivery?',
+    answer: 'Currently, we operate as a walk-in store. Visit us in Alipore to shop our full range of products. Our convenient location makes shopping easy for pet parents across Kolkata.'
+  },
+  {
+    question: 'Can I return products?',
+    answer: 'Please check products before purchase. For any concerns about product quality or issues, speak with our team in-store and we\'ll do our best to help.'
+  },
+  {
+    question: 'Do you have grain-free options?',
+    answer: 'Yes! We stock grain-free and special diet formulas for pets with allergies or sensitivities. Our staff can help you choose the right nutrition for your pet.'
+  }
+]
+
+const faqCategories = [
+  { id: 'general', label: 'General', faqs: generalFAQs },
+  { id: 'grooming', label: 'Grooming', faqs: groomingFAQs },
+  { id: 'clinic', label: 'Clinic', faqs: clinicFAQs },
+  { id: 'products', label: 'Products', faqs: productsFAQs },
 ]
 
 const testimonials = [
@@ -60,6 +121,24 @@ export default function Home() {
       <section className="relative bg-background overflow-hidden">
         <PawPrintPattern />
         <div className="container mx-auto px-5 md:px-8 lg:px-12 py-12 md:py-16 lg:py-20 relative z-10">
+          {/* Rating Badge - Desktop Right */}
+          <motion.div
+            className="hidden lg:block absolute top-8 right-12 z-20"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+          >
+            <div className="bg-white px-6 py-4 rounded-full shadow-lg">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">⭐</span>
+                <div className="text-left">
+                  <div className="font-fredoka font-semibold text-text-dark">5.0</div>
+                  <div className="text-xs text-text-medium">242+ Happy Reviews</div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Text Content */}
             <motion.div
@@ -92,7 +171,8 @@ export default function Home() {
                 </Button>
               </div>
 
-              <div className="inline-flex items-center gap-2 bg-white px-6 py-3 rounded-full shadow-md">
+              {/* Rating Badge - Mobile */}
+              <div className="lg:hidden inline-flex items-center gap-2 bg-white px-6 py-3 rounded-full shadow-md">
                 <span className="text-2xl">⭐</span>
                 <span className="font-semibold text-text-dark">5.0 • 242+ Happy Reviews</span>
               </div>
@@ -344,7 +424,7 @@ export default function Home() {
           </motion.div>
 
           <div className="max-w-4xl mx-auto">
-            <FAQAccordion items={generalFAQs} />
+            <FAQTabs categories={faqCategories} />
           </div>
         </div>
       </section>

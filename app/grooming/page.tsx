@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Sparkles, Scissors, Heart, Cat } from 'lucide-react'
+import { Sparkles, Scissors, Heart, Cat, Baby } from 'lucide-react'
 import FAQAccordion, { FAQItem } from '@/components/FAQAccordion'
 import Button from '@/components/Button'
 import ReadMore from '@/components/ReadMore'
@@ -151,6 +151,22 @@ export default function GroomingPage() {
                 </div>
               </div>
             </div>
+
+            <div className="bg-background p-8 rounded-2xl">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                  <Baby className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-fredoka text-2xl font-semibold mb-3 text-text-dark">
+                    Puppy & Kitten Intro Grooming
+                  </h3>
+                  <p className="text-text-medium leading-relaxed">
+                    First grooming experience? We offer gentle introduction sessions designed for puppies and kittens. These short, positive sessions help young pets get comfortable with grooming early on, setting them up for a lifetime of stress-free grooming visits.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -228,9 +244,11 @@ export default function GroomingPage() {
             <h2 className="font-fredoka text-3xl md:text-4xl font-semibold mb-6 text-center text-text-dark">
               Why Professional Grooming Matters
             </h2>
-            <p className="text-lg text-text-dark leading-relaxed">
-              Regular grooming isn't just about looks—it's essential for your pet's health and happiness. Professional groomers can spot skin issues, lumps, parasites, or infections early, often before you notice them at home. Proper nail trimming prevents painful overgrowth and posture problems. Ear cleaning reduces infection risk. De-shedding minimizes hairballs in cats and keeps your home cleaner. Plus, many pets genuinely enjoy the attention and pampering from experienced groomers who know exactly how to make them comfortable. At Pet's Need in Alipore, we combine health-focused care with that spa day feeling every pet deserves.
-            </p>
+            <div className="text-lg text-text-dark leading-relaxed">
+              <ReadMore maxLength={250}>
+                Regular grooming isn't just about looks—it's essential for your pet's health and happiness. Professional groomers can spot skin issues, lumps, parasites, or infections early, often before you notice them at home. Proper nail trimming prevents painful overgrowth and posture problems. Ear cleaning reduces infection risk. De-shedding minimizes hairballs in cats and keeps your home cleaner. Plus, many pets genuinely enjoy the attention and pampering from experienced groomers who know exactly how to make them comfortable. At Pet's Need in Alipore, we combine health-focused care with that spa day feeling every pet deserves.
+              </ReadMore>
+            </div>
           </div>
         </div>
       </section>

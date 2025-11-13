@@ -4,9 +4,10 @@ import { motion } from 'framer-motion'
 import { Scissors, Stethoscope, ShoppingBag, Store, Users, Heart, Check } from 'lucide-react'
 import HeroCarousel from '@/components/HeroCarousel'
 import ServiceCard from '@/components/ServiceCard'
-import TestimonialCard from '@/components/TestimonialCard'
+import RotatingTestimonials from '@/components/RotatingTestimonials'
 import FAQAccordion, { FAQItem } from '@/components/FAQAccordion'
 import Button from '@/components/Button'
+import { PawPrintPattern } from '@/components/DecorativeElements'
 
 const generalFAQs: FAQItem[] = [
   {
@@ -32,18 +33,15 @@ const generalFAQs: FAQItem[] = [
 ]
 
 const testimonials = [
-  {
-    name: 'Imran Rahaman',
-    review: 'I was blown away by the exceptional service, wide range of products, and dedication to animal welfare. Pet\'s Need exceeded my expectations in every way.'
-  },
-  {
-    name: 'KOUMARI NAG',
-    review: 'Extremely satisfied with the gentle and professional way they handled my Shitzu while grooming. Very good experience!'
-  },
-  {
-    name: 'Rabin Halder',
-    review: 'Best place for my pet—neat, clean, comfortable. All pet foods and doctors are available, and the grooming services are too good!'
-  }
+  { name: 'Imran Rahaman', review: 'I was blown away by the exceptional service, wide range of products, and dedication to animal welfare. Pet\'s Need exceeded my expectations in every way.' },
+  { name: 'KOUMARI NAG', review: 'Extremely satisfied with the gentle and professional way they handled my Shitzu while grooming. Very good experience!' },
+  { name: 'Rabin Halder', review: 'Best place for my pet—neat, clean, comfortable. All pet foods and doctors are available, and the grooming services are too good!' },
+  { name: 'Nasreen Khan', review: 'Excellent place. Dam good service, caring and cooperative staff members. I can never trust any other place over this. Thank you.' },
+  { name: 'Sneha Dasgupta', review: 'I bring my dogs for grooming here, they do a wonderful job every time. Very friendly and Amar da does a good job.' },
+  { name: 'Nausheen Iqbal', review: 'Best services within affordable rates. Staff\'s behaviour is very good. Premium quality food. Overall amazing 💯💯' },
+  { name: 'NexGen Tech', review: 'THIS IS THE BEST PETS CLINIC AND BEST PET PARLOUR IN KOLKATA YOU CAN SEE AND FIND AROUND KOLKATA IT IS BETTER THAN PAW AVENUE AND OTHERS' },
+  { name: 'Dona Saha', review: 'Awesome place. Thank you Pets Need... My Leo & Coco is so much happy 😄' },
+  { name: 'Zaid Nawaz', review: 'Best pet\'s parlour in Kolkata. Must visit grooming rate also vary low cost. Must be visit all pet\'s lover everything available what you want for your pet\'s like food, accessories, doctor available also.' },
 ]
 
 const productCategories = [
@@ -60,7 +58,8 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className="relative bg-background overflow-hidden">
-        <div className="container mx-auto px-5 md:px-8 lg:px-12 py-12 md:py-16 lg:py-20">
+        <PawPrintPattern />
+        <div className="container mx-auto px-5 md:px-8 lg:px-12 py-12 md:py-16 lg:py-20 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Text Content */}
             <motion.div
@@ -263,16 +262,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard
-                key={index}
-                name={testimonial.name}
-                review={testimonial.review}
-                delay={index * 0.15}
-              />
-            ))}
-          </div>
+          <RotatingTestimonials testimonials={testimonials} itemsPerPage={3} interval={6000} />
 
           <div className="text-center">
             <a
@@ -305,27 +295,29 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-8">
-            {productCategories.map((category, index) => (
-              <motion.div
-                key={index}
-                className="bg-background p-6 rounded-2xl text-center hover:shadow-md transition-all duration-300 hover:-translate-y-1"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <span className="text-5xl mb-3 block" role="img" aria-label={category.name}>
-                  {category.icon}
-                </span>
-                <h3 className="font-fredoka text-lg font-semibold mb-2 text-text-dark">
-                  {category.name}
-                </h3>
-                <p className="text-sm text-text-medium">
-                  {category.description}
-                </p>
-              </motion.div>
-            ))}
+          <div className="overflow-x-auto pb-4 -mx-5 px-5 md:mx-0 md:px-0 mb-8">
+            <div className="flex md:grid md:grid-cols-3 lg:grid-cols-6 gap-6 min-w-max md:min-w-0">
+              {productCategories.map((category, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-background p-6 rounded-2xl text-center hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex-shrink-0 w-48 md:w-auto"
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <span className="text-5xl mb-3 block" role="img" aria-label={category.name}>
+                    {category.icon}
+                  </span>
+                  <h3 className="font-fredoka text-lg font-semibold mb-2 text-text-dark">
+                    {category.name}
+                  </h3>
+                  <p className="text-sm text-text-medium">
+                    {category.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
           <div className="text-center">

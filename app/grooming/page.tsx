@@ -1,13 +1,11 @@
-import type { Metadata } from 'next'
+'use client'
+
+import { motion } from 'framer-motion'
 import { Sparkles, Scissors, Heart, Cat } from 'lucide-react'
 import FAQAccordion, { FAQItem } from '@/components/FAQAccordion'
 import Button from '@/components/Button'
-
-export const metadata: Metadata = {
-  title: 'Pet Grooming in Kolkata | Dog & Cat Grooming Alipore',
-  description: 'Professional pet grooming services in Alipore, Kolkata for dogs, cats, and small animals. Expert groomers, safe products, gentle handling. Book grooming near Behala, Tollygunge. Call 7411576879 today!',
-  keywords: ['pet grooming Kolkata', 'dog grooming Alipore', 'cat grooming Kolkata', 'pet spa Alipore', 'dog bath near me', 'professional grooming South Kolkata'],
-}
+import ReadMore from '@/components/ReadMore'
+import { FloatingBubbles, PawPrintPattern } from '@/components/DecorativeElements'
 
 const groomingFAQs: FAQItem[] = [
   {
@@ -36,17 +34,35 @@ export default function GroomingPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-pink-50 to-purple-50 py-16 md:py-20">
-        <div className="container mx-auto px-5 md:px-8 lg:px-12 text-center">
-          <h1 className="font-fredoka text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 text-text-dark">
+      <section className="relative bg-gradient-to-br from-pink-50 to-purple-50 py-16 md:py-20 overflow-hidden">
+        <FloatingBubbles />
+        <PawPrintPattern />
+        <div className="container mx-auto px-5 md:px-8 lg:px-12 text-center relative z-10">
+          <motion.h1
+            className="font-fredoka text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 text-text-dark"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             Pet Grooming in Kolkata
-          </h1>
-          <p className="text-lg md:text-xl text-text-medium mb-8 max-w-3xl mx-auto">
+          </motion.h1>
+          <motion.p
+            className="text-lg md:text-xl text-text-medium mb-8 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             Gentle, professional grooming that keeps your dog or cat looking great and feeling even better. Book your pet's spa day at Pet's Need in Alipore today.
-          </p>
-          <Button href="tel:7411576879" variant="primary">
-            Book Grooming Appointment
-          </Button>
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <Button href="tel:7411576879" variant="primary">
+              Book Grooming Appointment
+            </Button>
+          </motion.div>
         </div>
       </section>
 
